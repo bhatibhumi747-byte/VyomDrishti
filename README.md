@@ -114,14 +114,14 @@ Open `http://localhost:5173` in your browser to launch **VyomDrishti**.
 
 ## 🔌 API Reference
 
-## `GET /api/health`
+## GET /api/health 
 
 Returns `{"status": "online"}` along with active ISRO satellite missions — use to check if the backend is running.
 
-## `GET /api/default-region`
+## GET /api/default-region  
 
 Returns the default agricultural map bounds and center coordinates.  
-## `POST /api/analyze-polygon`
+## POST /api/analyze-polygon  
 
 Accepts a GeoJSON farm polygon and returns sub-second **Resourcesat-2A**, **EOS-04**, and **NISAR** metrics, base64 heatmap overlays, and bilingual Hindi/English advisories.
 
@@ -138,5 +138,5 @@ If you like this project:
 
 ---
  ## BY VOIDRUNNERS
-BHUMI BHATI
+BHUMI BHATI  
 NISHTHA SAHU

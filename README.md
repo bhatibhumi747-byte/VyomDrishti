@@ -22,7 +22,6 @@ Draw your farm on **ISRO Bhuvan**, fuse **Resourcesat-2A**, **EOS-04**, and **NI
 
 * 🛰️ **Multi-Mission ISRO Fusion** — Resourcesat-2A (Optical) + EOS-04 (C-SAR) + NISAR (S-SAR)
 * 🗺️ **Official Geoportal Anchoring** — ISRO Bhuvan Land Use / Land Cover (`LULC 250K`) WMS Layers
-* 🗣️ **Voice-First Hindi Advisories** — One-click **"हिंदी सुनें"** audio playback & bilingual action tips
 
 ---
 
@@ -79,46 +78,57 @@ vyomdrishti/
 
 ---------
 
-**Get Started
-*Backend Setup  
-cd vyomdrishti/backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+## 🚀 Getting Started
 
-# Generate geo-referenced sample GeoTIFFs for Resourcesat-2A, EOS-04 & NISAR
-python generate_sample.py
+### 1. Clone the Repository
 
-# Start FastAPI server
-uvicorn main:app --reload --port 8000
+    git clone https://github.com/<your-username>/vyomdrishti.git
+    cd vyomdrishti
 
-**Fronted Setup
-cd vyomdrishti/frontend
-npm install
-npm run dev
+### 2. Backend Setup
 
-Open http://localhost:5173 in your browser to launch VyomDrishti.
---------- 
-**🔌 API Reference  
-GET /api/health
-Returns {"status": "online"} along with active ISRO satellite missions — use to check if backend is running.
+    cd backend
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    python generate_sample.py
+    uvicorn main:app --reload --port 8000
 
-POST /api/analyze-polygon
-Accepts a GeoJSON farm polygon and returns sub-second Resourcesat-2A, EOS-04, and NISAR metrics, base64 heatmap overlays, and bilingual Hindi/English advisories.
+*(On Windows, activate the virtual environment using `venv\Scripts\activate`)*
 
-💖 Support the Project
+### 3. Frontend Setup
+
+    cd ../frontend
+    npm install
+    npm run dev
+
+Open `http://localhost:5173` in your browser to launch **VyomDrishti**.
+
+---
+
+## 🔌 API Reference
+
+### `GET /api/health`
+
+Returns `{"status": "online"}` along with active ISRO satellite missions — use to check if the backend is running.
+
+### `GET /api/default-region`
+
+Returns the default agricultural map bounds and center coordinates (**Sehore / Kothri Kalan, MP**).
+
+### `POST /api/analyze-polygon`
+
+Accepts a GeoJSON farm polygon and returns sub-second **Resourcesat-2A**, **EOS-04**, and **NISAR** metrics, base64 heatmap overlays, and bilingual Hindi/English advisories.
+
+---
+
+## 💖 Support the Project
+
 If you like this project:
 
-⭐ Star the repository
+⭐ Star the repository  
+🍴 Fork the project  
+🐛 Raise issues  
+🚀 Contribute to the project  
 
-🍴 Fork the project
-
-🐛 Raise issues
-
-🚀 Contribute to the project
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   └── package.json
-└── README.md
-
+---

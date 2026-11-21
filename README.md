@@ -74,7 +74,13 @@ vyomdrishti/
 │   │   │   ├── AnalyticsPanel.jsx
 │   │   │   └── SatelliteInfo.jsx
 │   │   ├── data/
-│   │   │   └── satellitesData.js
+│   │   └── satellitesData.js
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   └── package.json
+└── README.md
+```
 
 ---------
 

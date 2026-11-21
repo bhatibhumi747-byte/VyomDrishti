@@ -1,0 +1,17 @@
+# Python virtual environment & cache
+backend/venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+
+# Node / React dependencies & build output
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+.env.local
+
+# OS & Editor files
+.DS_Store
+Thumbs.db

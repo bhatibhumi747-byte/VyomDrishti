@@ -29,7 +29,8 @@ import {
 import FarmMap from "./components/FarmMap";
 import SatelliteInfo from "./components/SatelliteInfo";
 
-const API_URL = "/api/analyze";
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const API_URL = `${API_BASE}/api/analyze`;
 
 function getDefaultDates() {
   const end = new Date();

@@ -1,3 +1,4 @@
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 import { useEffect, useState } from "react";
 import {
   Building2,
@@ -18,7 +19,7 @@ export default function SatelliteInfo({ lang }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("/api/satellites")
+    fetch(`${API_BASE}/api/satellites`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load satellite catalog.");
         return res.json();

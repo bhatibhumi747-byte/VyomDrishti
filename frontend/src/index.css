@@ -1,0 +1,518 @@
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --bg-dark: #0b1320;
+  --panel-bg: #111c2e;
+  --card-bg: #17253b;
+  --border-color: #263854;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-blue: #38bdf8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Top Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  color: #06101c;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.brand h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.brand p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.lang-toggle {
+  display: flex;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lang-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.lang-btn.active {
+  background: var(--accent-blue);
+  color: #06101c;
+}
+
+/* Main Two-Column Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 18px;
+  padding: 18px 24px;
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.panel-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Controls & Buttons */
+.control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent-blue);
+  background: #1e314d;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent-emerald);
+  color: #052e16;
+  border-color: var(--accent-emerald);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #34d399;
+}
+
+.btn-active {
+  background: var(--accent-blue);
+  color: #06101c;
+  border-color: var(--accent-blue);
+}
+
+/* Map Container */
+.map-wrapper {
+  position: relative;
+  height: 460px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.leaflet-map {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Slider Box */
+.slider-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-blue);
+  cursor: pointer;
+}
+
+/* Diagnosis Card */
+.diagnosis-card {
+  border-radius: 10px;
+  padding: 14px 16px;
+  border-left: 5px solid var(--accent-emerald);
+  background: var(--card-bg);
+}
+
+.diagnosis-card.water_stress {
+  border-left-color: var(--accent-red);
+}
+
+.diagnosis-card.pest_nutrient_stress {
+  border-left-color: var(--accent-amber);
+}
+
+.diagnosis-card h3 {
+  font-size: 1.02rem;
+  margin-bottom: 6px;
+}
+
+.diagnosis-card p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+/* KPI Metric Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.kpi-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.kpi-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.kpi-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Chart Container */
+.chart-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.chart-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+.error-banner {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--accent-red);
+  color: #fecaca;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  background: var(--bg-dark);
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-tab:hover {
+  color: var(--text-primary);
+}
+
+.nav-tab.active {
+  background: var(--card-bg);
+  color: var(--accent-blue);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Satellite Information Page */
+.sat-info-container {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 20px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sat-hero {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sat-hero h2 {
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+.sat-hero p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  max-width: 780px;
+}
+
+.sat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 1200px) {
+  .sat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sat-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.sat-type-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  margin-bottom: 6px;
+}
+
+.sat-card-header h3 {
+  font-size: 1.25rem;
+}
+
+.sat-fullform {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.sat-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--card-bg);
+  padding: 12px;
+  border-radius: 9px;
+  border: 1px solid var(--border-color);
+}
+
+.sat-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.83rem;
+}
+
+.meta-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.sat-section h4,
+.sat-utilization-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.sat-section ul {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.res-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.res-box span {
+  color: var(--text-secondary);
+}
+
+.sat-utilization-box {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 4px solid;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+.sat-utilization-box p {
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}

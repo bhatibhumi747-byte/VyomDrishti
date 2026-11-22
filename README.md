@@ -135,6 +135,19 @@ If you like this project:
 🚀 Contribute to the project  
 
 ---
+## PPT Presentation Link  
+https://drive.google.com/file/d/1kpVZzuoYXB-Z2hJCHBrBMETu9GC7IvPV/view?usp=drivesdk
+
+## Github Repo Link 
+https://github.com/bhatibhumi747-byte/VyomDrishti.git
+
+## Project Demo Link  
+https://drive.google.com/file/d/1vhSlHtGGuZPzDa7dkWwm-RhFtdve6vdr/view?usp=sharing  
+
+## Live Project Deployed Link  
+https://vyom-drishti-lovat.vercel.app/
+
+---
  ## BY VOIDRUNNERS
 BHUMI BHATI  
 NISHTHA SAHU

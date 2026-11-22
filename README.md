@@ -50,35 +50,33 @@ Draw your farm on **ISRO Bhuvan**, fuse **Resourcesat-2A**, **EOS-04**, and **NI
 ## 📁 Project Structure
 
 ```text
-vyomdrishti/
+Vyomdrishti/
 ├── backend/
 │   ├── data/
-│   │   ├── resourcesat/
-│   │   │   ├── BAND2.tif
-│   │   │   ├── BAND3.tif
-│   │   │   └── BAND4.tif
-│   │   ├── eos04/
-│   │   │   ├── VV.tif
-│   │   │   └── VH.tif
-│   │   └── nisar/
-│   │       ├── HH.tif
-│   │       └── HV.tif
-│   ├── generate_sample.py
-│   ├── processor.py
+│   │   ├── eos04_sar_moisture.tif
+│   │   ├── eos04_sar.tif
+│   │   ├── nisar_lband_sar.tif
+│   │   └── resourcesat2a_optical.tif
+│   ├── generate_sample_tif.py
 │   ├── main.py
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── satellite_engine.py
 ├── frontend/
+│   ├── public/
 │   ├── src/
+│   │   ├── assets/
 │   │   ├── components/
-│   │   │   ├── MapViewer.jsx
-│   │   │   ├── AnalyticsPanel.jsx
+│   │   │   ├── FarmMap.jsx
 │   │   │   └── SatelliteInfo.jsx
-│   │   ├── data/
-│   │   └── satellitesData.js
+│   │   ├── App.css
 │   │   ├── App.jsx
+│   │   ├── index.css
 │   │   └── main.jsx
+│   ├── eslint.config.js
 │   ├── index.html
-│   └── package.json
+│   ├── package.json
+│   └── vite.config.js
+├── .gitignore
 └── README.md
 ```
 
